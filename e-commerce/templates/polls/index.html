@@ -1,0 +1,78 @@
+{%extends 'base.html'%}
+
+{%block contenido%}
+
+<h2 class="text-center font-weight-bold" style="font-family: 'Montserrat', sans-serif; color: black;">Portada de la Tienda</h2>
+
+<div id="carouselExampleCaptions" class="carousel slide d-flex justify-content-center">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="{% url 'ropahombre' %}">
+                    <img src="static/carpeta-img/ropa_hombre.jpg" class="d-block w-100" alt="Portada Ropa Hombre">
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Ropa Hombre</h5>
+                    <p>Categoría perfecta para todo hombre que esté buscando algo nuevo.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <a href="{% url 'ropamujer' %}">
+                    <img src="static/carpeta-img/ropa_mujer.jpg" class="d-block w-100" alt="Portada Ropa Mujer">
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Ropa Mujer</h5>
+                    <p>Categoría para buscar ropa de mujer.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <a href="{% url 'joyeria' %}">
+                    <img src="static/carpeta-img/joyeria.jpg" class="d-block w-100" alt="Portada Joyería">
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Joyería</h5>
+                    <p>Si quieres alguna joya nueva este es tu sitio.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <a href="{% url 'electronica' %}">
+                    <img src="static/carpeta-img/electronica.jpg" class="d-block w-100" alt="Portada Electrónica">
+                </a>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Electrónica</h5>
+                    <p>Todo tipo de tecnología a tu disposción aquí.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <style>
+        .carousel {
+            max-width: 500px; /* ajusta el ancho máximo del carrusel */
+            margin: 0 auto; /* centra el carrusel */
+        }
+
+        .carousel-item img {
+            max-height: 300px; /* ajusta la altura máxima de las imágenes */
+            object-fit: cover; /* ajusta la forma en que se ajusta la imagen en el carrusel */
+        }
+    </style>
+
+{%endblock%}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

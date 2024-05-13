@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+    {% if user.is_staff %}
+        <form action="{% url 'añadir' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_div }}
+                <button type="submit">Añadir</button>
+        </form>
+    {% else %}
+        {% comment %} Redirigir al usuario a la página principal {% endcomment %}
+        {% url 'portada' as home_url %}
+        <script>window.location.href = "{{ home_url }}";</script>
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

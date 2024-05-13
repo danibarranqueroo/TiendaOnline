@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+    <h2 class="text-center font-weight-bold" style="font-family: 'Montserrat', sans-serif; color: black;">Ropa para Hombre</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for producto in ropahombre %}
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <img src="{% static producto.image %}" class="card-img-top" alt="{{ producto.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ producto.title }}</h5>
+                        <p class="card-text">{{ producto.description }}</p>
+                        <h6 class="card-subtitle mb-2 text-muted">Precio: {{ producto.price }}€</h6>
+                        <span class="sp" data-product-id="{{ producto.id }}"></span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>Tienda DAI</title>
+</head>
+<body>
+    <script src="{% static 'js/star_rating.js' %}"></script>
+    <style>
+        .checked {
+            color: orange;
+        }
+        .not_checked {
+            color: black;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'portada' %}">Tienda DAI</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <form class="d-flex" role="search" action="{% url 'busqueda' %}" method="get">
+                        <input class="form-control me-2" type="search" placeholder="Artículos" aria-label="Buscar" name="busqueda">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categorias
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'ropahombre' %}">Ropa para Hombre</a></li>
+                        <li><a class="dropdown-item" href="{% url 'ropamujer' %}">Ropa para Mujer</a></li>
+                        <li><a class="dropdown-item" href="{% url 'joyeria' %}">Joyería</a></li>
+                        <li><a class="dropdown-item" href="{% url 'electronica' %}">Electrónica</a></li>
+                    </ul>
+                </li>
+                {% if user.is_authenticated and user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'añadir' %}">Añadir Producto</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link me-3" href="#">Carrito</a>
+                </li>
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                    <div class="d-flex">
+                        <div class="d-flex align-items-center">
+                            <p class="d-inline-block align-middle m-auto">Hola {{ user.username }}!</p>
+                            <a class="nav-link active d-inline-block" aria-current="page" href="{% url 'logout' %}">Logout</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+        {% block contenido %}{% endblock %}
+    </div>
+
+    <div class="container-fluid">
+        {% block footer %}{% endblock %}
+    </div>
+</body>
+</html>
